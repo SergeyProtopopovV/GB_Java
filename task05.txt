@@ -1,0 +1,36 @@
+.git
+.gitignore
+.idea
+homework01
+lection01
+lection02
+out
+public class program.java
+seminar01
+seminar01.iml
+seminar02
+task05.txt
+.git
+.gitignore
+.idea
+homework01
+lection01
+lection02
+out
+public class program.java
+seminar01
+seminar01.iml
+seminar02
+task05.txt
+.git
+.gitignore
+.idea
+homework01
+lection01
+lection02
+out
+public class program.java
+seminar01
+seminar01.iml
+seminar02
+task05.txt
