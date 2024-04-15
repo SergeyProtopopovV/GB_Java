@@ -25,10 +25,31 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 class BubbleSort {
-    private static File log;
-    private static FileWriter fileWriter;
+    private static File log(String data) {
+        Logger logger = Logger.getLogger(BubbleSort.class.getName());
+        try {
+            FileHandler fh = new FileHandler("log.txt");
+            logger.addHandler(fh);
+        } catch (SecurityException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+    private static FileWriter fileWriter(String data) {
+        File file = new File("log.txt");
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(file);
+            fr.write(data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return fr;
+    }
 
     public static void sort(int[] mas) {
 
@@ -45,7 +66,7 @@ class BubbleSort {
                     mas[i+1] = buf;
                 }
             }
-            System.out.println(Arrays.toString(mas));
+            log(Arrays.toString(mas));
         }
     }
 }
