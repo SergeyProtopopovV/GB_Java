@@ -1,22 +1,3 @@
-//Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл.
-//
-//Напишите свой код в методе sort класса BubbleSort. Метод sort принимает на вход один параметр:
-//
-//int[] arr - числовой массив
-//После каждого прохода по массиву ваш код должен делать запись в лог-файл 'log.txt'
-//в формате год-месяц-день час:минуты {массив на данной итерации}.
-//Для логирования использовать логгер logger класса BubbleSort.
-//        Пример
-//        arr = new int[]{9, 4, 8, 3, 1};
-//sort(arr)
-//
-//// При чтении лог-файла получим:
-// 2023-05-19 07:53 [4, 8, 3, 1, 9]
-// 2023-05-19 07:53 [4, 3, 1, 8, 9]
-// 2023-05-19 07:53 [3, 1, 4, 8, 9]
-// 2023-05-19 07:53 [1, 3, 4, 8, 9]
-// 2023-05-19 07:53 [1, 3, 4, 8, 9]
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
@@ -25,36 +6,44 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 
 class BubbleSort {
-    private static File log(String data) {
-        Logger logger = Logger.getLogger(BubbleSort.class.getName());
+    private static String log(String data) {
+
+        String pattern = "yyyy-MM-dd hh:mm ";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        String message = date + data;
+        return message;
+    }
+
+
+    private static FileWriter fileWriter(String mes) {
         try {
-            FileHandler fh = new FileHandler("log.txt");
-            logger.addHandler(fh);
-        } catch (SecurityException | IOException e) {
-            throw new RuntimeException(e);
+            FileWriter fw = new FileWriter("log.txt", true);
+            fw.write(mes + "\n");
+            fw.flush();
+
+        } catch (IOException e) {
+            System.out.println("ошибка записи");
         }
         return null;
-    }
-    private static FileWriter fileWriter(String data) {
-        File file = new File("log.txt");
-        FileWriter fr = null;
-        try {
-            fr = new FileWriter(file);
-            fr.write(data);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return fr;
     }
 
     public static void sort(int[] mas) {
 
         boolean isSorted = false;
         int buf;
+        try {
+            FileWriter fw = new FileWriter("log.txt", false);
+            fw.write("");
+            fw.flush();
+
+        } catch (IOException e) {
+            System.out.println("ошибка записи");
+        }
+
+
         while(!isSorted) {
             isSorted = true;
             for (int i = 0; i < mas.length-1; i++) {
@@ -66,7 +55,8 @@ class BubbleSort {
                     mas[i+1] = buf;
                 }
             }
-            log(Arrays.toString(mas));
+            String mes = log(Arrays.toString(mas));
+            fileWriter(mes);
         }
     }
 }
