@@ -26,11 +26,11 @@ public class Printer {
         }
 
         Calculator calculator = new Calculator();
-        int result = calculator.calculate(op, a, b);
+        float result = calculator.calculate(op, a, b);
         System.out.println(result);
-        int result2 = calculator.calculate(op2, c, d);
+        float result2 = calculator.calculate(op2, c, d);
         System.out.println(result2);
-        int prevResult = calculator.calculate(undo, 0, 0);
+        float prevResult = calculator.calculate(undo, 0, 0);
         System.out.println(prevResult);
     }
 }

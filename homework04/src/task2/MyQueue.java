@@ -11,24 +11,24 @@ import java.util.LinkedList;
 
 class MyQueue<T> {
     // Напишите свое решение ниже
-
+    LinkedList<T> userQueue = new LinkedList<T>();
     public void enqueue(T element){
         // Напишите свое решение ниже
-
+        userQueue.add(element);
     }
 
     public T dequeue(){
         // Напишите свое решение ниже
-        return null;
+        return userQueue.removeFirst();
     }
 
     public T first(){
         // Напишите свое решение ниже
-        return null;
+        return userQueue.getFirst();
     }
 
     public LinkedList<T> getElements() {
         // Напишите свое решение ниже
-        return null;
+        return userQueue;
     }
 }
